@@ -1,0 +1,19 @@
+{
+  "name": "task_service_api",
+  "version": "1.0.0",
+  "description": "basic api for handling task related services",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "devstart": "nodemon --nolazy index.js"
+  },
+  "author": "Robert Rojas Fernandez (robert.rojas@veanos.com)",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "ejs": "^2.7.1",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.7",
+    "nodemon": "^1.19.4"
+  }
+}

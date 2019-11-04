@@ -1,0 +1,15 @@
+FROM node:12.3.1
+
+ENV TZ=America/New_York
+RUN ln -fs /usr/share/zoneinfo/$TZ /etc/localtime
+RUN dpkg-reconfigure -f noninteractive tzdata
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+
+COPY ./app /usr/src/app
+RUN npm install --verbose
+ARG NODEMON
+RUN if [ "$NODEMON" = "TRUE" ] ; then npm install -g nodemon ; else echo "Nodemon installed: $NODEMON" ; fi
+
+EXPOSE 3000
