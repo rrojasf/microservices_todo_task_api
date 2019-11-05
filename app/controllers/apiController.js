@@ -60,36 +60,34 @@ exports.create = (req, res) => {
 }
 
 exports.update = (req, res) => {
-  console.log("try update tasks")
+  console.log("try update task")
 
-  if (typeof req.body.description !== "undefined") {
-    let query = {
-      _id: req.params.id
-    }
-    let update = {}
-    let options = { new: true }
-
-    if (req.body.description) {
-      update["description"] = req.body.description
-    }
-    if (req.body.status) {
-      update["status"] = req.body.status
-    }
-    if (req.body.user_id) {
-      update["user_id"] = req.body.user_id
-    }
-
-    Task.findOneAndUpdate(query, { $set: update }, options)
-      .then(task => {
-        res.json(task)
-      })
-      .catch(err => {
-        res.status(500).json({
-          code: "internal_server_error",
-          message: err.message
-        })
-      })
+  let query = {
+    _id: req.params.id
   }
+  let update = {}
+  let options = { new: true }
+
+  if (req.body.description) {
+    update["description"] = req.body.description
+  }
+  if (req.body.status) {
+    update["status"] = req.body.status
+  }
+  if (req.body.user_id) {
+    update["user_id"] = req.body.user_id
+  }
+
+  Task.findOneAndUpdate(query, { $set: update }, options)
+    .then(task => {
+      res.json(task)
+    })
+    .catch(err => {
+      res.status(500).json({
+        code: "internal_server_error",
+        message: err.message
+      })
+    })
 }
 
 exports.delete = (req, res) => {
