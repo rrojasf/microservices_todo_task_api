@@ -5,6 +5,7 @@ const router = express.Router()
 
 router.get("/tasks/", apiController.list)
 router.get("/tasks/:id", apiController.detail)
+router.get("/tasks/user/:userId", apiController.list)
 router.post("/tasks/", apiController.create)
 router.put("/tasks/:id", apiController.update)
 router.patch("/tasks/:id", apiController.update)

@@ -1,9 +1,16 @@
 let Task = require("../models/Task")
 
 exports.list = (req, res) => {
-  console.log("try tasks")
+  console.log("try tasks", req.params)
+  let query = {}
 
-  Task.find({}, function(err, task) {
+  if (typeof req.params.userId !== "undefined") {
+    query = {
+      user_id: req.params.userId
+    }
+  }
+
+  Task.find(query, function(err, task) {
     if (err) res.send(err)
 
     res.json(task)
@@ -64,6 +71,12 @@ exports.update = (req, res) => {
 
     if (req.body.description) {
       update["description"] = req.body.description
+    }
+    if (req.body.status) {
+      update["status"] = req.body.status
+    }
+    if (req.body.user_id) {
+      update["user_id"] = req.body.user_id
     }
 
     Task.findOneAndUpdate(query, { $set: update }, options)
