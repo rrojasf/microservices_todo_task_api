@@ -3,7 +3,9 @@ const cors = require("cors")
 const whitelist = [
   "http://localhost",
   "http://localhost:3000",
-  "http://localhost:3001"
+  "http://localhost:3001",
+  "https://zen-lovelace-63d088.netlify.com",
+  "https://taskmanager-ms-app.herokuapp.com"
 ]
 
 const corsOptions = {
